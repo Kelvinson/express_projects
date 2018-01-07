@@ -1,14 +1,20 @@
-const http = require('http');
+const express = require('express'); //to use a node Module
+const app = express();
 
-const hostname = '127.0.0.1';
-const port = 3000;
+app.get('/', function(req, res) {
+  res.send('Hello World');
+}); //second parameter is the callback Function
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type','text/plain');
-  res.end('Hello World\n');
+app.get('/about', (req, res) => { //use the es6 syntax of lambda function instead of function signature
+  res.send('<h1>About</h1>');
 });
 
-server.listen(port, hostname, ()=> {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.get('/users/:name', (req, res) => {
+  let user = req.params.name;
+  res.send('<h1>'+user+'</h1>');
+})
+
+
+app.listen(3000, function(){
+  console.log('Server started on port 3000');
 });
