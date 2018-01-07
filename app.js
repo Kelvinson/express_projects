@@ -1,19 +1,9 @@
 const express = require('express'); //to use a node Module
+const path = require('path'); //another module 'path' which is a core node module
 const app = express();
 
-app.get('/', function(req, res) {
-  res.send('Hello World');
-}); //second parameter is the callback Function
-
-app.get('/about', (req, res) => { //use the es6 syntax of lambda function instead of function signature
-  res.send('<h1>About</h1>');
-});
-
-app.get('/users/:name', (req, res) => {
-  let user = req.params.name;
-  res.send('<h1>'+user+'</h1>');
-})
-
+//server static files and set static path
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(3000, function(){
   console.log('Server started on port 3000');
