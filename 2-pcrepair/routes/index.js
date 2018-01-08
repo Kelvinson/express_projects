@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', {
     title: 'Home',
-    name: 'John Doe'
+    name: 'Dong Wang'
   });
 });
 
